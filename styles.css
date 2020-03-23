@@ -1,0 +1,31 @@
+body{
+    background-color: lightcyan;
+}
+.countdown{
+    float: right;
+    padding-right: 10px;
+    color: black
+}
+
+.table{
+    margin: 20px;
+}
+
+#question{
+    background-color: cornflowerblue;
+    font-size: 30px;
+    padding: 10px;
+    display: inline-block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.choice{
+    font-size: 20px;
+    
+}
+#result{
+    background-color: lightsalmon;
+
+    font-style: italic;
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
