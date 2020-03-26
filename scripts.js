@@ -8,7 +8,8 @@ var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var scoreDiv = document.getElementById("score");
 var pEl = document.getElementById("pElement");
-var result = document.getElementById("result")
+var result = document.getElementById("result");
+var localStorage =  window.localStorage;
 
 var resultTimeOut;
 function setResultTimeOut() {
@@ -19,18 +20,18 @@ function setResultTimeOut() {
 function clearResultTimeOut(){
     clearTimeout(resultTimeOut);
 }
-var timerCountDown = 40;
+
+var timerCountDown = 25;
 var timerCountDownTimer;
 function setTimerCountDownTimeOut(){
     timerCountDownTimer = setInterval(function(){
         timer.innerHTML= timerCountDown;
        timerCountDown = timerCountDown -1;
        if (timerCountDown < 0){
-           clearTimerCountDown();
+            scoreRender(1);
+           clearTimerCountDown();  
        }
-
     }, 1000)
-
 };
 function clearTimerCountDown(){
     clearInterval(timerCountDownTimer);
@@ -59,14 +60,13 @@ var questions = [
         choiceC: "Pathon",
         choiceD: "Java",
         correct: "A",
-
     }, {
         question: "In CSS and HTML colors are displayed by combining these three shades of light",
-        choiceA: "Red, Green, and Blue.",
+        choiceA: "White, Pink and Blue",
         choiceB: "Yellow, Blue, and Green.",
         choiceC: "Violet, Red and Orange",
-        choiceD: "White, Pink and Blue",
-        correct: "A",
+        choiceD: "Red, Green, and Blue.",
+        correct: "D",
     }, {
         question: "What elements are used to test for TRUE or False values stored in variables?",
         choiceA: "Function",
@@ -76,11 +76,11 @@ var questions = [
         correct: "B",
     }, {
         question: "What is a JavaScript element that represents either TRUE or FALSE values",
-        choiceA: "Boolean",
+        choiceA: "Array",
         choiceB: "Number",
         choiceC: "String",
-        choiceD: "Array",
-        correct: "A",
+        choiceD: "Boolean",
+        correct: "D",
     }, {
         question: "What is the type of loop that continues through a block of code as long as the specified condition remains TRUE?",
         choiceA: "For Loop",
@@ -90,10 +90,17 @@ var questions = [
         correct: "C",
     }, {
         question: "What is a block of code called that is used to perform a specific task in Javascript?",
-        choiceA: "Variable",
-        choiceB: "Function",
+        choiceA: "Function",
+        choiceB: "Variable",
         choiceC: "charAt",
         choiceD: "String",
+        correct: "A",
+    },{
+        question: "What element is used to store and manipulate text usually in multiples in JavaScript?",
+        choiceA: "Array",
+        choiceB: "Strings",
+        choiceC: "Variable",
+        choiceD: "Function",
         correct: "B",
     }
 ];
@@ -121,13 +128,12 @@ function renderQuestion() {
 }
 
 function checkAnswer(answer) {
-
     if (answer === questions[runningQuestion].correct) {
         score++;
-        result.innerHTML = "You got it";
+        result.innerHTML = "You got it!";
     } else {
         timerCountDown = timerCountDown -5;
-        result.innerHTML = "wrong!"
+        result.innerHTML = "Wrong!"
     }
     if (resultTimeOut){
         clearResultTimeOut();
@@ -135,11 +141,33 @@ function checkAnswer(answer) {
     } else {
         setResultTimeOut(); 
     }
-    runningQuestion++;
-    renderQuestion();
+    if (runningQuestion == lastQuestion){
+        //show result
+        scoreRender(0);
+    
+    }else{
+        runningQuestion++;
+        renderQuestion();
+    }
 }
 
-function scoreRender() {
-    scoreDiv.style.display = "block";
+//display results endType: 0: finished the with quiz,  1: time out.
+function scoreRender(endType) {
+    clearTimerCountDown();
+    var message= "You have finished your quiz!";
+    if(endType==1){
+        message="Time is out!";
+    }
+    final.style.display = "block"
+    alert(message);
+    quiz.innerHTML = "Your Score:"+ score + "/9."
+    localStorage.setItem("score", score);
 
+}
+
+function submitScore(){
+    localStorage.setItem("score", JSON.stringify(score));
+    var intialInput =  document.querySelector("#myInput").value;
+    localStorage.setItem("intial", JSON.stringify(intialInput));
+    window.location.href='./score.html';
 }

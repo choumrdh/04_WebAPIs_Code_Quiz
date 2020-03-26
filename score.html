@@ -15,38 +15,18 @@
         <a class="navbar-brand text-white" href="./index.html">Coding Quiz Challenge</a>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link text-white" href="./score.html">View HighScore</a>
+                <a class="nav-link text-white" href="./score.html">View Scoreboard</a>
             </li>
         </ul>
     </nav>
 <div class="container">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mickey</td>
-            <td>Ch</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Chubby</td>
-            <td>Ch</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-          </tr>
-        </tbody>
-      </table>
-
+  <div id="myDIV" class="header">
+    <h2>Score Board</h2>
+  </div>
+  
+  <ul id="userList">
+  </ul>
+<button id="clearbutton" class="btn btn-primary active" > Clear</button>
 </div>
     
 
@@ -55,7 +35,7 @@
             <span class="text-white">© Mich.Ch</span>
         </div>
     </footer>
-    <script src="./scripts.js"></script>
+    <script src="./leaderBoard.js"></script>
 </body>
 
 </html>

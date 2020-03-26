@@ -15,28 +15,26 @@
         <a class="navbar-brand text-white" href="./index.html">Coding Quiz Challenge</a>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link text-white" href="./score.html">View HighScore</a>
+                <a class="nav-link text-white" href="./score.html">View Scoreboard</a>
             </li>
         </ul>
     </nav>
 
     <div id="container">
         <div class="card text-center m-5 border border-primary">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-primary">
                 <h3>Ready for a Challenge?</h3>
                 <div class="countdown">
-                    <span id="timer">40</span>
-                    <span>Second</span>
+                    <span id="timer"></span>
+                    <span>seconds</span>
                 </div>
             </div>
 
             <div class="card-body">
-                <p id="pElement"> Try to answer code-related questions within the time limit. Keep in mine that
-                    incorrect answers will
-                    penalize your time by five seconds!</p>
+                <p id="pElement"> Try to answer code-related questions within the time limit. You will have 25 seconds to complete 9 code related questions. Keep in mine that incorrect answers will penalize your time by five seconds!</p>
             </div>
             <div id="start">
-                <button type="button" class="btn btn-primary">Start Quiz</button>
+                <button type="button" class="btn btn-primary active">Start Quiz</button>
             </div>
             <div id="quiz" style="display: none;">
 
@@ -52,8 +50,12 @@
             </div>
             <div id="score" style="display: none;">score</div>
             <div id="final" style="display: none;">
-                <input placeholder="You name here">
-                <button id="submit">See Highscore</button>
+                <input type="text" id="myInput" placeholder="Intial Here">
+                <button onclick="submitScore()"
+                        id="submit">submit
+                    </button>
+
+            
             </div>
 
         </div>
@@ -67,6 +69,7 @@
         </div>
     </footer>
     <script src="./scripts.js"></script>
+    
 </body>
 
 </html>

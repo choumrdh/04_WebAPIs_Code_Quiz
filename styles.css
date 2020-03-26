@@ -1,14 +1,16 @@
 body{
     background-color: lightcyan;
 }
-.countdown{
-    float: right;
-    padding-right: 10px;
-    color: black
-}
+h3{
+    display: inline-block;
+    color: white;
+    text-align: center;
 
-.table{
-    margin: 20px;
+}
+.countdown{
+    font-size: 20px;
+    float: right;
+    color: wheat;
 }
 
 #question{
@@ -20,11 +22,18 @@ body{
 }
 .choice{
     font-size: 20px;
+    cursor: pointer;
     
+}
+.choice:hover{
+    background-color: turquoise;
+}
+.choice:active{
+    color: teal;
 }
 #result{
     background-color: lightsalmon;
-
+    display: inline;
     font-style: italic;
     font-size: 25px;
     font-family: 'Times New Roman', Times, serif;
