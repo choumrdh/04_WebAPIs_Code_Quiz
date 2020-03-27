@@ -7,6 +7,11 @@ h3{
     text-align: center;
 
 }
+h2{
+    display: inline;
+    color: wheat;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .countdown{
     font-size: 20px;
     float: right;
@@ -31,7 +36,7 @@ h3{
 .choice:active{
     color: teal;
 }
-#result{
+#answer{
     background-color: lightsalmon;
     display: inline;
     font-style: italic;

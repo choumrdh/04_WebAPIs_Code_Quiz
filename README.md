@@ -2,8 +2,8 @@
 https://choumrdh.github.io/04_WebAPIs_Code_Quiz/
 
 Multiple-choice questions. 
-Given 25 seconds to complete 9 questions.
-Wrong answer will deduct 5 seonds.
+Given 25 seconds to complete 9 coding related questions.
+Incorrect answer will deduct 5 seconds.
 
 
 Acceptance Criteria

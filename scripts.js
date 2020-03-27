@@ -1,6 +1,6 @@
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
-var timer = document.getElementById("timer");
+var timerSpan = document.getElementById("timer");
 var question = document.getElementById("question");
 var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
@@ -8,32 +8,33 @@ var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var scoreDiv = document.getElementById("score");
 var pEl = document.getElementById("pElement");
-var result = document.getElementById("result");
-var localStorage =  window.localStorage;
+var answerCheck = document.getElementById("answer");
+var sumbitButton = document.getElementById("submit");
+var localStorage = window.localStorage;
 
-var resultTimeOut;
-function setResultTimeOut() {
-    resultTimeOut = setTimeout(function () {
-        result.innerHTML = "";
-    }, 2000);
+var answerCheckTimeOut;
+function setAnswerCheckTimeOut() {
+    answerCheckTimeOut = setTimeout(function () {
+        answerCheck.innerHTML = " ";
+    }, 1000);
 };
-function clearResultTimeOut(){
-    clearTimeout(resultTimeOut);
+function clearAnswerTimeOut() {
+    clearTimeout(answerCheckTimeOut);
 }
 
 var timerCountDown = 25;
 var timerCountDownTimer;
-function setTimerCountDownTimeOut(){
-    timerCountDownTimer = setInterval(function(){
-        timer.innerHTML= timerCountDown;
-       timerCountDown = timerCountDown -1;
-       if (timerCountDown < 0){
+function setTimerCountDownTimeOut() {
+    timerCountDownTimer = setInterval(function () {
+        timerSpan.innerHTML = timerCountDown;
+        timerCountDown = timerCountDown - 1;
+        if (timerCountDown < 0) {
             scoreRender(1);
-           clearTimerCountDown();  
-       }
+            clearTimerCountDown();
+        }
     }, 1000)
 };
-function clearTimerCountDown(){
+function clearTimerCountDown() {
     clearInterval(timerCountDownTimer);
 }
 
@@ -95,7 +96,7 @@ var questions = [
         choiceC: "charAt",
         choiceD: "String",
         correct: "A",
-    },{
+    }, {
         question: "What element is used to store and manipulate text usually in multiples in JavaScript?",
         choiceA: "Array",
         choiceB: "Strings",
@@ -130,22 +131,21 @@ function renderQuestion() {
 function checkAnswer(answer) {
     if (answer === questions[runningQuestion].correct) {
         score++;
-        result.innerHTML = "You got it!";
+        answerCheck.innerHTML = "You got it!";
     } else {
-        timerCountDown = timerCountDown -5;
-        result.innerHTML = "Wrong!"
+        timerCountDown = timerCountDown - 5;
+        answerCheck.innerHTML = "Wrong!"
     }
-    if (resultTimeOut){
-        clearResultTimeOut();
-        setResultTimeOut();
+    if (answerCheckTimeOut) {
+        clearAnswerTimeOut();
+        setAnswerCheckTimeOut();
     } else {
-        setResultTimeOut(); 
+        setAnswerCheckTimeOut();
     }
-    if (runningQuestion == lastQuestion){
-        //show result
+    if (runningQuestion === lastQuestion) {
         scoreRender(0);
-    
-    }else{
+
+    } else {
         runningQuestion++;
         renderQuestion();
     }
@@ -154,20 +154,20 @@ function checkAnswer(answer) {
 //display results endType: 0: finished the with quiz,  1: time out.
 function scoreRender(endType) {
     clearTimerCountDown();
-    var message= "You have finished your quiz!";
-    if(endType==1){
-        message="Time is out!";
+    if (endType === 0) {
+        alert("You have finished your quiz!");
+    } else {
+        alert("Time is out!");
     }
     final.style.display = "block"
-    alert(message);
-    quiz.innerHTML = "Your Score:"+ score + "/9."
-    localStorage.setItem("score", score);
+    quiz.innerHTML = "Your Score:" + score + "/9."
 
 }
 
-function submitScore(){
+sumbitButton.addEventListener("click", submitScore)
+function submitScore() {
+    var initialInput = document.querySelector("#myInput").value;
     localStorage.setItem("score", JSON.stringify(score));
-    var intialInput =  document.querySelector("#myInput").value;
-    localStorage.setItem("intial", JSON.stringify(intialInput));
-    window.location.href='./score.html';
+    localStorage.setItem("initial", JSON.stringify(initialInput));
+    window.location.href = './leaderBoard.html';
 }

@@ -1,13 +1,27 @@
-var userScore = JSON.parse(localStorage.getItem("score"));
-var userIntital = JSON.parse(localStorage.getItem("intial"));
-
+var userScore = localStorage.getItem("score");
+var userInitital = localStorage.getItem("initial");
 var userList = document.querySelector("#userList")
-var user= document.createElement("li");
-user.innerHTML = userIntital + " " + userScore + "/9";
-userList.appendChild(user)
+var leaderBoard = localStorage.getItem("leaderBoard");
 
+if (leaderBoard) {
+    leaderBoard = JSON.parse(leaderBoard);
+} else {
+    leaderBoard = [];
+}
+var user = {
+    initial: userInitital,
+    score: userScore,
+}
+leaderBoard.push(user);
+localStorage.setItem("leaderBoard", JSON.stringify(leaderBoard));
 
-var clearbutton =  document.querySelector("#clearbutton");
-clearbutton.addEventListener("click", function clear(){;
-    clearbutton = window.localStorage.clear()
+for (var i = 0; i < leaderBoard.length; i++) {
+    var newLiList = document.createElement("li");
+    newLiList.innerHTML = leaderBoard[i].initial + leaderBoard[i].score + "/9";
+    userList.appendChild(newLiList);
+}
+var clearbutton = document.querySelector("#clearbutton");
+clearbutton.addEventListener("click", function clear() {
+    userList.remove()
+    window.localStorage.clear()
 })
