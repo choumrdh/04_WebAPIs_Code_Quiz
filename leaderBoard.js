@@ -8,12 +8,15 @@ if (leaderBoard) {
 } else {
     leaderBoard = [];
 }
-var user = {
-    initial: userInitital,
-    score: userScore,
+
+if (userScore && userInitital) {
+    var user = {
+        initial: userInitital,
+        score: userScore,
+    }
+    leaderBoard.push(user);
+    localStorage.setItem("leaderBoard", JSON.stringify(leaderBoard));
 }
-leaderBoard.push(user);
-localStorage.setItem("leaderBoard", JSON.stringify(leaderBoard));
 
 for (var i = 0; i < leaderBoard.length; i++) {
     var newLiList = document.createElement("li");
@@ -24,4 +27,5 @@ var clearbutton = document.querySelector("#clearbutton");
 clearbutton.addEventListener("click", function clear() {
     userList.remove()
     window.localStorage.clear()
+
 })
