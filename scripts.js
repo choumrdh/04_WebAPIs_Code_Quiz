@@ -128,6 +128,7 @@ function renderQuestion() {
 
 }
 
+
 function checkAnswer(answer) {
     if (answer === questions[runningQuestion].correct) {
         score++;
@@ -150,6 +151,18 @@ function checkAnswer(answer) {
         renderQuestion();
     }
 }
+choiceA.addEventListener("click", function () {
+    checkAnswer("A");
+})
+choiceB.addEventListener("click", function () {
+    checkAnswer("B");
+})
+choiceC.addEventListener("click", function () {
+    checkAnswer("C");
+})
+choiceD.addEventListener("click", function () {
+    checkAnswer("D");
+})
 
 //display results endType: 0: finished the with quiz,  1: time out.
 function scoreRender(endType) {
